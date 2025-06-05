@@ -1,4 +1,4 @@
-let str1 = 'I\'ve got someting'
+let str1 = 'I\'ve got someting' // \ and \n are escape chars
 
 let str2 = "bro her name is 'jane', and i ....."
 
@@ -32,3 +32,10 @@ let mssg = `your age is ${23},
 and you are learning js`
 
 console.log(mssg);
+
+// a magic, read md file of "variables"
+
+let m1 = "5" + 2 // "52"
+let m2 = "5" - 2 // 3
+
+console.log(m1, "\n", m2)
