@@ -1,9 +1,28 @@
 console.log("working")
 
-let compWins = 0;
-let userWins = 0;
+const score = {
+    compWins: 0,
+    userWins: 0,
+    ties: 0,
+    reset() {
+        Object.keys(this).forEach(key => {
+            if (typeof this[key] === 'number') this[key] = 0
+        }
+        )
+    }
+}
 
-function checkResult(value){
+const updateUI = () => {
+    document.querySelector('#comp-score').textContent = score.compWins
+    document.querySelector('#player-score').textContent = score.userWins
+}
+
+const resetScore = () => {
+    score.reset()
+    updateUI()
+}
+
+function checkResult(value) {
     let moves = ['rock', 'paper', 'scissor']
     let computerMove = moves[Math.floor(Math.random() * 3)]
     let result = ''
@@ -14,17 +33,18 @@ function checkResult(value){
         scissor: 'paper'
     }
 
-    if(computerMove === value){
+    if (computerMove === value) {
         result = 'tie'
-    }else if(computerMove === beats[value]){
+        score.ties += 1
+    } else if (computerMove === beats[value]) {
         result = 'win'
-        userWins += 1
-        document.querySelector('#user-wins').textContent = userWins
-    }else{
+        score.userWins += 1
+    } else {
         result = 'lose'
-        compWins += 1
-        document.querySelector('#comp-wins').textContent = compWins
+        score.compWins += 1
     }
+
+    updateUI()
 
 
     console.log(result)

@@ -45,11 +45,11 @@ function ask(question, yes, no) {
 }
 
 function showOk() {
-    alert("You agreed.");
+    console.log("You agreed.");
 }
 
 function showCancel() {
-    alert("You canceled the execution.");
+    console.log("You canceled the execution.");
 }
 
 // usage: functions showOk, showCancel are passed as arguments to ask
@@ -78,3 +78,12 @@ ask2(
 
 
 // ##############################################################
+
+const talk = function(){
+    console.log("im talking")
+}
+
+console.log(talk.toString())
+
+// IMPORTANT in browser if you type ttalk it will print whole fun coz browser automatically call "Function.prototype.toString()"
+// in node you can do "Function.toString()"

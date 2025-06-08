@@ -5,17 +5,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-secondary: rgb(31, 31, 31);
+            --bg-primary: rgb(0, 0, 0);
+        }
+
+        a {
+            all: unset;
+            cursor: pointer;
+            color: rgb(123, 255, 0);
+            text-transform: capitalize;
+        }
+
+        a:hover{
+            color: rgb(186, 255, 121);
+            text-shadow: 0px 0px 30px blue, 0px 0px 10px greenyellow;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            background-color: black;
+            color: whitesmoke;
+            text-align: center;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        main.container {
+            padding: clamp(.5rem, 5vw, 2rem);
+        }
+
+        header.container {
+            justify-content: space-between;
+            padding: 2rem;
+            background-color: var(--bg-secondary);
+        }
+
+        h1 {
+            text-transform: uppercase;
+        }
+
+        /* main */
+
+        .players {
+            --gap: clamp(1rem, 3vw, 3rem);
+            background: var(--bg-secondary);
+            margin-block: 2rem;
+            gap: var(--gap);
+            padding: var(--gap);
+        }
+
+        .players>div {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: var(--bg-primary);
+        }
+
+        .player {
+            position: relative;
+            display: grid;
+            place-content: center;
+        }
+
+        .player>.score {
+            margin: auto;
+            font-size: clamp(1.5rem, 15vw, 8rem);
+        }
+
+        .controls-container {
+            flex-wrap: wrap;
+            gap: clamp(.5rem, 5vw, 4rem);
+        }
+
+        .controls-container button {
+            padding-inline: clamp(.1rem, 5vw, 3rem);
+            padding-block: .8rem;
+            border-radius: 100vh;
+            background-color: transparent;
+            border: 1px solid aqua;
+            color: white;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 576px) {
+            header.container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media screen and (orientation: landscape) and (max-height: 576px) {
+            .players {
+                align-content: center;
+                justify-content: center;
+            }
+
+            main.container{
+                height: 100dvh;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .controls-container{
+                align-content: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <p>Rock paper scissors</p>
-    <button onclick="checkResult(this.value)" value="rock">rock</button>
-    <button onclick="checkResult(this.value)" value="paper">paper</button>
-    <button onclick="checkResult(this.value)" value="scissor">scissor</button>
+    <header class="container flex">
+        <h1>Rock Paper Scissor</h1>
+        <nav>
+            <ul class="flex">
+                <li><a href="https://github.com/dullat" target="_blank">My-Github</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="section players flex">
+            <div class="player user">
+                <span id="player-score" class="score">0</span>
+                <span class="player-lable">User</span>
+            </div>
+            <div class="player comp">
+                <span id="comp-score" class="score">0</span>
+                <span class="player-lable">Comp</span>
+            </div>
+        </div>
 
-    <div>
-        <p>comp-wins: <span id="comp-wins">0</span> user-wins: <span id="user-wins">0</span></p>
-    </div>
+        <div class="section controls-container flex">
+            <button onclick="checkResult(this.value)" value="rock">rock</button>
+            <button onclick="checkResult(this.value)" value="paper">paper</button>
+            <button onclick="checkResult(this.value)" value="scissor">scissor</button>
+            <button onclick="resetScore()">Reset</button>
+        </div>
+
+    </main>
     <script src="6.rockPaper.js"></script>
 </body>
 
