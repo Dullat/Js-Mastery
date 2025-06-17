@@ -35,3 +35,16 @@ console.log(head)
 const arr1 = [1,2,3,4,5,6,7,8]
 
 console.log(arr1.pop()) // mutating
+
+// shallow copy
+
+const arrObj = [{name: "dullat", last: "jatt"}, {name: "singh", last: "jatt"}]
+
+const arrCp = [...arrObj]  // shallow copy doesn't affect the original when elements are primitives (like numbers or strings).
+
+// Only nested reference types (objects, arrays, functions) are shared.
+
+arrCp[0].name = "Dj"
+
+console.log(arrObj[0]);
+
