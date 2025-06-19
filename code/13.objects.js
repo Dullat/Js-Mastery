@@ -1,3 +1,7 @@
+// singleton, later
+
+
+// object literals
 const readline = require("readline")
 
 const obj1 = {
@@ -14,30 +18,21 @@ console.log(obj1["like birds"], obj1.name, obj1)
 
 // computed properties
 
-let fruit;
+let fruit = "apple";
+const mySym = Symbol("key1") // symbol is a datatype to use this in obj we use "[]"
 
-function ask() {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
-
-    return new Promise(resolve => {
-        rl.question("enter a fruit name", fruit => {
-            rl.close()
-            resolve(fruit)
-        })
-    })
+const fvFruitObj = {
+    [fruit]: 5,
+    [mySym]: "mykey1"
 }
 
-async function createObj(params) {
-    fruit = await ask()
-    return {
-        [fruit]: 5, // just focus here for now 
-    }
-}
+console.log(typeof(mySym))
+console.log(fvFruitObj)
 
-let fruitObj = createObj()
 
-if(fruitObj )
+// to stop values changing Object.freeze("theobject")
 
+Object.freeze(fvFruitObj)
+
+fvFruitObj.apple = 7
+console.log(fvFruitObj.apple)
