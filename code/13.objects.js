@@ -36,3 +36,10 @@ Object.freeze(fvFruitObj)
 
 fvFruitObj.apple = 7
 console.log(fvFruitObj.apple)
+
+// in operator
+
+console.log("apple" in fvFruitObj)
+
+// realworld example
+
