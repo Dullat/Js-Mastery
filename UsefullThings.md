@@ -27,9 +27,10 @@ this : https://youtu.be/9ksqBa8_txM?si=fS4AiBZ1Q7OmIu8G
 ## Learning Games
 
 1. **Flex-box Froggy** https://flexboxfroggy.com/
-2. **Grid-Gardin** https://cssgridgarden.com/
-3. **Array and Other things** https://codepip.com/games/disarray/
-4. **CSS Tricks** https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+2. **Flex-box Visulas** https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-background
+3. **Grid-Gardin** https://cssgridgarden.com/
+4. **Array and Other things** https://codepip.com/games/disarray/
+5. **CSS Tricks** https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 ## Themes
 
@@ -38,3 +39,8 @@ this : https://youtu.be/9ksqBa8_txM?si=fS4AiBZ1Q7OmIu8G
 ## Videos
 
 1. Flex-box Crash course https://youtu.be/xN1BkNItTRk?si=Iwf1Byg0E1A8VheI
+
+---
+# Generators
+
+**clamp generator**  https://clamp.font-size.app/?config=eyJyb290IjoiMTYiLCJtaW5XaWR0aCI6IjMwMHB4IiwibWF4V2lkdGgiOiIxMjAwcHgiLCJtaW5Gb250U2l6ZSI6IjE2cHgiLCJtYXhGb250U2l6ZSI6IjMycHgifQ%3D%3D
