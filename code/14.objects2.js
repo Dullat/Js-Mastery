@@ -25,7 +25,7 @@ const newObj = Object.assign({}, tinderUser, regulatUser) // .assign(target, sou
 
 const newObj2 = {...regulatUser, ...tinderUser}
 console.log(newObj2, " newObj2 #############")
-console.log(Object.entries(newObj2), " entries  this also works on arrays##########");
+console.log(Object.entries(newObj2), " entries , check im theory Ohter topics this also works on arrays##########");
 
 
 
