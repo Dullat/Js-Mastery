@@ -1,4 +1,5 @@
-const readline = require("readline")
+import { Readline } from "readline/promises"
+// const readline = require("readline")
 
 // ########### Singleton (later) ###########
 
@@ -20,6 +21,14 @@ const obj1 = {
 delete obj1["like birds"]
 
 console.log(obj1["like birds"], obj1.name, obj1)
+
+// ########## Imp, ref is copied  not actual object ############
+
+const someObj = {message: "hi bro"}
+const someObj2 = someObj
+someObj.message = "by bro"
+console.log(someObj.message);
+
 
 
 // ########### Computed Properties ###########
