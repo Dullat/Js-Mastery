@@ -7,9 +7,40 @@ const score = {
     reset() {
         Object.keys(this).forEach(key => {
             if (typeof this[key] === 'number') this[key] = 0
+            localStorage.removeItem("score")
         }
         )
     }
+}
+
+function loadLocalScore(){
+    const saved = localStorage.getItem("score")
+    if (!saved) {
+         console.warn("No localy saved score")
+         return 
+    }
+
+    try{
+        const parsed = JSON.parse(saved)
+        if(parsed && typeof parsed === 'object'){
+            Object.assign(score, parsed)
+        }
+    }catch(e){
+        console.error("Failed to parse score from local storage", e)
+    }
+}
+
+const saveScoreLocaly = () => {
+    localStorage.setItem("score", JSON.stringify(score))
+}
+
+// console.log(updateUI)
+
+window.onload = () => {
+    loadLocalScore()
+    updateUI()
+    console.log(score);
+    
 }
 
 const updateUI = () => {
@@ -45,6 +76,8 @@ function checkResult(value) {
     }
 
     updateUI()
+
+    saveScoreLocaly()
 
 
     console.log(result)
