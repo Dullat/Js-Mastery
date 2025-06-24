@@ -6,6 +6,11 @@ import { Readline } from "readline/promises"
 const tinderUser = new Object()
 console.log(tinderUser)
 
+// ########### destruction ###########
+
+const object1 = {message: "hi bro", from: "dullat"}
+const {message} = object1
+console.log(message)
 
 // ########### Object Literals ###########
 console.log("################# Object Literals ##########")
