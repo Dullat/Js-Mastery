@@ -10,12 +10,27 @@ class Calculator {
         return this.operators.has(value)
     }
 
-    tokenize(expression){
+    tokenize(expression) {
         return expression.match(/(\d+\.?\d*|\+|\-|\*|\/)/g) || [];
     }
 
-    evalulate(){
+    evaluate() {
         const tokens = this.tokenize(this.operationString)
+        console.log(tokens)
+        const lastToken = tokens[tokens.length - 1]
+        if (this.operators.has(lastToken)) {
+            this.wasLastOperator = true
+            return
+        } else {
+            this.wasLastOperator = false
+        }
+
+        try {
+            const tempResult = (Function(`"use strict"; return(${tokens.join("")})`))();
+            console.log(tempResult)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     input(value) {
@@ -27,13 +42,52 @@ class Calculator {
             this.operationString += value;
         }
 
-        // this.evaluate();
-        console.log(this.operationString)
+        this.evaluate();
+
+        console.log(this.operationString);
+
     }
 }
 
+
+class Gui {
+    constructor(calcInstance) {
+        this.calc = calcInstance;
+        this.createUI()
+    }
+
+    createButton(label, onClick) {
+        const button = document.createElement("button")
+        button.textContent = label
+        console.log(onClick)
+        button.addEventListener("click", () => onClick(label))
+        return button
+
+    }
+
+    createUI() {
+        const display = document.createElement("div")
+        const keyPad = document.createElement("div")
+
+        const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        const ops = ["+", "-", "*", "/"];
+
+        nums.forEach(n => {
+            keyPad.appendChild(this.createButton(n, this.handleInput.bind(this)))
+        })
+
+        ops.forEach(op => {
+            keyPad.appendChild(this.createButton(op, this.handleInput.bind(this)))
+        })
+
+        document.body.appendChild(keyPad)
+    }
+
+    handleInput(value) {
+        this.calc.input(value)
+    }
+}
+
+
 const cal = new Calculator()
-cal.input("2")
-cal.input("+")
-cal.input("-")
-cal.input("2")
+const gui = new Gui(cal)
