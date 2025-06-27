@@ -27,7 +27,7 @@ class Calculator {
 
         try {
             const tempResult = (Function(`"use strict"; return(${tokens.join("")})`))();
-            console.log(tempResult)
+            return tempResult
         } catch (error) {
             console.log(error)
         }
@@ -42,10 +42,12 @@ class Calculator {
             this.operationString += value;
         }
 
-        this.evaluate();
+        return this.evaluate();
 
-        console.log(this.operationString);
+    }
 
+    returnOpString(){
+        return this.operationString
     }
 }
 
@@ -59,15 +61,29 @@ class Gui {
     createButton(label, onClick) {
         const button = document.createElement("button")
         button.textContent = label
+        button.classList.add("btn")
         console.log(onClick)
         button.addEventListener("click", () => onClick(label))
+
         return button
 
     }
 
+    display(opString, tempResult){
+        const calcDisplay = document.querySelector('.display')
+        calcDisplay.querySelector('.op-str-el').textContent = opString
+        calcDisplay.querySelector('.temp-res-el').textContent = tempResult
+    }
+
     createUI() {
         const display = document.createElement("div")
+        const operationStringElement = document.createElement("div")
+        const tempResElement = document.createElement("div")
         const keyPad = document.createElement("div")
+        display.classList.add('display')
+        keyPad.classList.add('keypad')
+        operationStringElement.classList.add("op-str-el")
+        tempResElement.classList.add("temp-res-el")
 
         const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
         const ops = ["+", "-", "*", "/"];
@@ -80,11 +96,16 @@ class Gui {
             keyPad.appendChild(this.createButton(op, this.handleInput.bind(this)))
         })
 
+        document.body.appendChild(display)
         document.body.appendChild(keyPad)
+        display.appendChild(operationStringElement)
+        display.appendChild(tempResElement)
     }
 
     handleInput(value) {
-        this.calc.input(value)
+        let tempRes = this.calc.input(value)
+        let opString = this.calc.returnOpString()
+        this.display(opString, tempRes)
     }
 }
 
