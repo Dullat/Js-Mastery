@@ -3,7 +3,7 @@ class Calculator {
         this.operationString = "";
         this.result = 0;
         this.wasLastOperator = false;
-        this.operators = new Set(["+", "-", "*", "/"]);
+        this.operators = new Set(["+", "-", "*", "/", "="]);
     }
 
     isOperator(value) {
@@ -27,6 +27,8 @@ class Calculator {
 
         try {
             const tempResult = (Function(`"use strict"; return(${tokens.join("")})`))();
+            this.result = tempResult
+            console.log(typeof this.result)
             return tempResult
         } catch (error) {
             console.log(error)
@@ -36,6 +38,12 @@ class Calculator {
     input(value) {
         const isOP = this.isOperator(value)
 
+        if (isOP && value === '=') {
+            console.log(this.result)
+            this.operationString = this.result.toString()
+            return this.result
+        }
+
         if (this.wasLastOperator && isOP) {
             this.operationString = this.operationString.slice(0, -1) + value
         } else {
@@ -44,9 +52,11 @@ class Calculator {
 
         return this.evaluate();
 
+
+
     }
 
-    returnOpString(){
+    returnOpString() {
         return this.operationString
     }
 }
@@ -55,7 +65,8 @@ class Calculator {
 class Gui {
     constructor(calcInstance) {
         this.calc = calcInstance;
-        this.createUI()
+        this.order = 0;
+        this.createUI();
     }
 
     createButton(label, onClick) {
@@ -65,28 +76,34 @@ class Gui {
         console.log(onClick)
         button.addEventListener("click", () => onClick(label))
 
+        this.order += 1
+        console.log(this.order)
+
+        button.style.order = this.order
+        button.setAttribute("data-index", this.order)
+
+        if (label === 0) {
+            button.style.order = 12
+        }
+
         return button
 
     }
 
-    display(opString, tempResult){
+    display(opString, tempResult) {
         const calcDisplay = document.querySelector('.display')
         calcDisplay.querySelector('.op-str-el').textContent = opString
         calcDisplay.querySelector('.temp-res-el').textContent = tempResult
     }
 
     createUI() {
-        const display = document.createElement("div")
-        const operationStringElement = document.createElement("div")
-        const tempResElement = document.createElement("div")
         const keyPad = document.createElement("div")
-        display.classList.add('display')
         keyPad.classList.add('keypad')
-        operationStringElement.classList.add("op-str-el")
-        tempResElement.classList.add("temp-res-el")
+
+
 
         const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-        const ops = ["+", "-", "*", "/"];
+        const ops = ["+", "-", "*", "/", "="];
 
         nums.forEach(n => {
             keyPad.appendChild(this.createButton(n, this.handleInput.bind(this)))
@@ -96,10 +113,7 @@ class Gui {
             keyPad.appendChild(this.createButton(op, this.handleInput.bind(this)))
         })
 
-        document.body.appendChild(display)
         document.body.appendChild(keyPad)
-        display.appendChild(operationStringElement)
-        display.appendChild(tempResElement)
     }
 
     handleInput(value) {

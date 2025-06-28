@@ -25,22 +25,47 @@
 
         .display{
             display: flex;
-            flex-direction: column;
+            position: relative;
+            align-items: center;
+            text-align:right;
             gap: .2rem;
             border: 2px solid red;
             border-radius: .5rem;
             padding: .5rem;
+            font-size: 1.3rem;
+            height: 2rem;
+            margin-bottom: 1rem;
         }
 
-        /* .keypad{
+        .temp-res-el{
+            position: absolute;
+            top: -100%
+        }
+
+        .op-str-el{
+            margin-left: auto;
+        }
+
+        .keypad{
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 1rem
-        } */
+        }
+
+        [data-index=10]{
+            order: 11 !important;
+        }
 
     </style>
 </head>
 <body>
+    <div class="display">
+        <div class="op-str-el"></div>
+        <div class="temp-res-el"></div>
+    </div>
+    <p>
+        it has no better ui, or some buttons like clear are missing , coz i wanted to learn DOM , not to make a calc
+    </p>
     <script src="19.betterCalc.js"></script>
 </body>
 </html>
