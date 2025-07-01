@@ -74,9 +74,17 @@ document.querySelectorAll('.js-add-to-cart').forEach(button => {
     } else {
       cart.push({
         productId,
-        // productName,
         quantity: 1
       })
     }
+
+    // calc total quantity and update the dom
+    let cartQuantity = 0
+
+    cart.forEach((item) => {
+      cartQuantity += item.quantity
+    })
+
+    document.querySelector(".js-cart-quantity").textContent = cartQuantity
   })
 })
