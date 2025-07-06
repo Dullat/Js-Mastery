@@ -35,7 +35,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            ${formatCurrency(matchingProduct.priceCents)}
+            ${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -60,7 +60,7 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.name}">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>
@@ -79,3 +79,6 @@ document.querySelectorAll('.js-add-to-cart').forEach(button => {
     updateCartQuentity()
   })
 })
+
+
+updateCartQuentity()
