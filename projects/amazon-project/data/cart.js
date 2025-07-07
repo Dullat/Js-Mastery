@@ -4,7 +4,7 @@ if (!cart) cart = [
     {
         productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
         quantity: 2,
-        deliveryOptionId: 1
+        deliveryOptionId: 3
     },
 ];
 
@@ -47,4 +47,16 @@ export function removeFromCart(productId) {
 
 function saveToStorage() {
     localStorage.setItem("cart", JSON.stringify(cart))
+}
+
+export function updateDeliveryOption(productId, deliveryOption){
+    console.log(productId, deliveryOption);
+    
+    cart.forEach(cartItem => {
+        if(cartItem.productId === productId){
+            cartItem.deliveryOptionId = deliveryOption
+        }
+    })
+
+    saveToStorage()
 }
