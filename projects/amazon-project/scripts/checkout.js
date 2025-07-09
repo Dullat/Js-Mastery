@@ -4,81 +4,85 @@ import { formatCurrency } from "./utils/money.js";
 import { deliveryOptions } from "../data/deliveryOptions.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'
 
-let cartSummaryHTML = ""
-
-cart.forEach(cartItem => {
-  const productId = cartItem.productId;
-
-  const matchingProduct = products.find(product =>
-    String(product.id) === String(productId)
-  );
 
 
+function renderOrderSummary() {
+  let cartSummaryHTML = ""
 
-  if (!matchingProduct) {
-    console.warn(`No matching product found for productId: ${productId}`);
-    return;
-  }
+  cart.forEach(cartItem => {
+    const productId = cartItem.productId;
 
-
-  const deliveryOptionId = cartItem.deliveryOptionId;
-
-  let deliveryOption;
-
-  deliveryOptions.forEach(option => {
-    if (option.id == deliveryOptionId) deliveryOption = option
-  })
-
-  const today = dayjs()
-  const deliveryDate = today.add(deliveryOption.deliveryDays, 'days')
-  const dateString = deliveryDate.format('dddd, MMMM, D')
+    const matchingProduct = products.find(product =>
+      String(product.id) === String(productId)
+    );
 
 
-  cartSummaryHTML += `
-    <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
-      <div class="delivery-date">
-        Delivery date: ${dateString}
-      </div>
-      <div class="cart-item-details-grid">
-        <img class="product-image" src="${matchingProduct.image}">
-        <div class="cart-item-details">
-          <div class="product-name">
-            ${matchingProduct.name}
-          </div>
-          <div class="product-price">
-            ${formatCurrency(matchingProduct.priceCents)}
-          </div>
-          <div class="product-quantity">
-            <span>
-              Quantity: <span class="quantity-label">${cartItem.quantity}</span>
-            </span>
-            <span class="update-quantity-link link-primary">Update</span>
-            <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
-              Delete
-            </span>
-          </div>
-        </div>
-        <div class="delivery-options js-delivery-options">
-          ${deliveryOptionsHTML(matchingProduct, cartItem)}    
-        </div>
-      </div>
-    </div>
-  `;
-});
+
+    if (!matchingProduct) {
+      console.warn(`No matching product found for productId: ${productId}`);
+      return;
+    }
 
 
-function deliveryOptionsHTML(product, cartItem) {
-  let html = '';
-  deliveryOptions.forEach((deliveryOption) => {
+    const deliveryOptionId = cartItem.deliveryOptionId;
+
+    let deliveryOption;
+
+    deliveryOptions.forEach(option => {
+      if (option.id == deliveryOptionId) deliveryOption = option
+    })
 
     const today = dayjs()
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days')
-    const priceString = deliveryOption.priceCents === 0 ? 'Free' : 'Only';
+    const dateString = deliveryDate.format('dddd, MMMM, D')
 
-    const isChecked = deliveryOption.id == cartItem.deliveryOptionId
-    
 
-    html += `
+    cartSummaryHTML += `
+      <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
+        <div class="delivery-date">
+          Delivery date: ${dateString}
+        </div>
+        <div class="cart-item-details-grid">
+          <img class="product-image" src="${matchingProduct.image}">
+          <div class="cart-item-details">
+            <div class="product-name">
+              ${matchingProduct.name}
+            </div>
+            <div class="product-price">
+              ${formatCurrency(matchingProduct.priceCents)}
+            </div>
+            <div class="product-quantity">
+              <span>
+                Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+              </span>
+              <span class="update-quantity-link link-primary">Update</span>
+              <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
+                Delete
+              </span>
+            </div>
+          </div>
+          <div class="delivery-options js-delivery-options">
+            ${deliveryOptionsHTML(matchingProduct, cartItem)}    
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+
+
+  function deliveryOptionsHTML(product, cartItem) {
+    let html = '';
+    deliveryOptions.forEach((deliveryOption) => {
+
+      const today = dayjs()
+      const deliveryDate = today.add(deliveryOption.deliveryDays, 'days')
+      const priceString = deliveryOption.priceCents === 0 ? 'Free' : 'Only';
+
+      const isChecked = deliveryOption.id == cartItem.deliveryOptionId
+
+
+      html += `
       <div class="delivery-option">
         <input type="radio" 
         class="delivery-option-input js-delivery-option" 
@@ -96,27 +100,31 @@ function deliveryOptionsHTML(product, cartItem) {
         </div>
       </div>
     `;
-  })
+    })
 
-  return html
+    return html
+  }
+
+  document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML
+
+
+  document.querySelectorAll(".js-delete-link").forEach(((link) => {
+    link.addEventListener('click', () => {
+      const productId = link.dataset.productId
+      removeFromCart(productId)
+
+      document.querySelector(`.js-cart-item-container-${productId}`).remove()
+    })
+  }))
+
+
+  document.querySelectorAll('.js-delivery-option').forEach(element => {
+    element.addEventListener('click', () => {
+      const { productId, deliveryOption } = element.dataset
+      updateDeliveryOption(productId, deliveryOption)
+      renderOrderSummary()
+    })
+  })
 }
 
-document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML
-
-
-document.querySelectorAll(".js-delete-link").forEach(((link) => {
-  link.addEventListener('click', () => {
-    const productId = link.dataset.productId
-    removeFromCart(productId)
-
-    document.querySelector(`.js-cart-item-container-${productId}`).remove()
-  })
-}))
-
-
-document.querySelectorAll('.js-delivery-option').forEach(element => {
-  element.addEventListener('click', () => {
-    const {productId, deliveryOption} = element.dataset
-    updateDeliveryOption(productId, deliveryOption)
-  })
-})
+renderOrderSummary()
