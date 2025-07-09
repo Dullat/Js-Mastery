@@ -13,12 +13,10 @@ export function paymentSummary() {
     let taxAmmount = 0;
     let totalPriceAfterTax = 0;
 
-    console.log("total-items", totalItems);
     
 
     cart.forEach(cartItem => {
-        let matchingProduct = getProducts(cartItem.productId)
-        console.log(matchingProduct);
+        const matchingProduct = getProducts(cartItem.productId)
         
         totalPrice += matchingProduct.priceCents * cartItem.quantity
         totalItems += cartItem.quantity
