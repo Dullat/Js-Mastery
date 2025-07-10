@@ -8,7 +8,7 @@ if (!cart) cart = [
     },
 ];
 
-export function addToCart(productId) {
+export function addToCart(productId, selectedOption) {
     let matchingItem;
     cart.forEach((item) => {
         if (productId === item.productId) {
@@ -17,11 +17,11 @@ export function addToCart(productId) {
     })
 
     if (matchingItem) {
-        matchingItem.quantity += 1
+        matchingItem.quantity += selectedOption
     } else {
         cart.push({
             productId,
-            quantity: 1,
+            quantity: selectedOption,
             deliveryOptionId: 3
         })
     }

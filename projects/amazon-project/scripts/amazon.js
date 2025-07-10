@@ -44,7 +44,7 @@ function renderProductsGrid() {
             ${product.getPrice()}
           </div>
 
-          <div class="product-quantity-container">
+          <div class="product-quantity-container js-product-quantity-container">
             <select>
               <option selected value="1">1</option>
               <option value="2">2</option>
@@ -80,10 +80,15 @@ function renderProductsGrid() {
   document.querySelector('.js-products-grid').innerHTML = productsHTML
 
   document.querySelectorAll('.js-add-to-cart').forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
       const productId = button.dataset.productId
+      // const parentElement = button.parentElement
+      const parentElement = button.closest(".product-container")
 
-      addToCart(productId)
+      const selectedOption = parseInt(parentElement.querySelector("select").value)
+      console.log(selectedOption)
+
+      addToCart(productId, selectedOption)
       updateCartQuentity()
     })
   })
