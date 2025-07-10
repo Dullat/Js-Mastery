@@ -5,10 +5,19 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 // import '../data/backend-practice.js'
 
 
-loadProductsFetch().then(() => {
+async function loadPage() {
+    await loadProductsFetch() // we dont have to use .then we can use await and write code line by line
     renderOrderSummary()
     paymentSummary()
-})
+}
+
+loadPage()
+
+
+// loadProductsFetch().then(() => {
+//     renderOrderSummary()
+//     paymentSummary()
+// })
 
 // new Promise((resolve) => { // this thing's md is in theory
 //     loadProducts(() => {
