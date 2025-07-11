@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promises</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+
+    <!-- Highlight.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- Highlight.js JavaScript Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+
+    <!-- Initialize Highlight.js -->
+    <script>hljs.highlightAll();</script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        pre {
+            background-color: #3a3a3a;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #ccc;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+            color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <pre>
+        <code class="language-javascript">
+            function getData(url) {
+                return new Promise(function(resolve, reject){
+                    let xhr = new XMLHttpRequest();
+
+                    xhr.onload = function(){
+                        if (xhr.status === 200) {
+                            resolve(xhr.responseText);
+                        } else {
+                            reject(`Request failed with status ${xhr.status}`);
+                        }
+                    };
+
+                    xhr.onerror = function(){
+                        reject("Network error occurred");
+                    };
+
+                    xhr.open('GET', url);
+                    xhr.send();
+                });
+            }
+
+        </code>
+    </pre>
+
+    <pre>
+        <code class="language-javascript">
+            getData('https://supersimplebackend.dev/')
+                .then(data => {
+                    let user = JSON.parse(data);
+                    console.log("User:", user);
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                });
+
+        </code>
+    </pre>
+    <h2>Message from API , check script in HTML file:</h2>
+    <div class="message">
+
+    </div>
+    <script>
+        let p = new Promise(function (resolve, reject) {
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    resolve(xhr.responseText);
+                } else {
+                    reject(`Request failed with status ${xhr.status}`);
+                }
+            };
+
+            xhr.onerror = function () {
+                reject("Network error occurred");
+            };
+
+            xhr.open('GET', 'https://supersimplebackend.dev/');
+            xhr.send();
+        });
+
+
+        p.then(data => {
+            console.log(data)
+            document.querySelector('.message').textContent = data
+        })
+    </script>
+</body>
+
+</html>
