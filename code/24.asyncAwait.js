@@ -60,3 +60,9 @@ console.log(p);  // each async fun return a promis even if you dont return promi
 // async awit are used together but there are some cases, you shoud check MDN documentation
 
 // tut https://youtu.be/spvYqO_Kp9Q?list=PL1PqvM2UQiMoGNTaxFMSK2cih633lpFKP&t=823
+
+import weatherData from './24.1.await.js'
+
+console.log(weatherData.status, 'imported data')
+
+console.log('end')
