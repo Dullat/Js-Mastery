@@ -1,0 +1,360 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "username": "johndoe",
+      "phone": "123-456-7890",
+      "website": "johndoe.com",
+      "address": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "zipcode": "12345"
+      },
+      "company": {
+        "name": "Tech Corp",
+        "catchPhrase": "Innovation at its best"
+      },
+      "createdAt": "2024-01-15T10:30:00Z",
+      "updatedAt": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "username": "janesmith",
+      "phone": "098-765-4321",
+      "website": "janesmith.com",
+      "address": {
+        "street": "456 Oak Ave",
+        "city": "Another City",
+        "zipcode": "67890"
+      },
+      "company": {
+        "name": "Design Studio",
+        "catchPhrase": "Creative solutions"
+      },
+      "createdAt": "2024-01-16T14:20:00Z",
+      "updatedAt": "2024-01-16T14:20:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Bob Johnson",
+      "email": "bob@example.com",
+      "username": "bobjohnson",
+      "phone": "555-123-4567",
+      "website": "bobjohnson.dev",
+      "address": {
+        "street": "789 Pine Rd",
+        "city": "Dev City",
+        "zipcode": "11111"
+      },
+      "company": {
+        "name": "Code Solutions",
+        "catchPhrase": "Building the future"
+      },
+      "createdAt": "2024-01-17T09:15:00Z",
+      "updatedAt": "2024-01-17T09:15:00Z"
+    },
+    {
+      "id": "1752328651467",
+      "email": "test@example.com",
+      "name": "Test User",
+      "password": "$2b$10$fgnbquRKV.w968zTw1bZZe7ooZHqfcYWOWtrhosHcy2pZLJ4c1b2K",
+      "createdAt": "2025-07-12T13:57:31.467Z"
+    },
+    {
+      "id": "1752328652998",
+      "name": "API Created User",
+      "email": "api@example.com",
+      "createdAt": "2025-07-12T13:57:32.998Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "Getting Started with REST APIs",
+      "body": "REST APIs are fundamental to modern web development. This post covers the basics of creating and consuming REST APIs.",
+      "userId": "1",
+      "tags": [
+        "api",
+        "rest",
+        "tutorial"
+      ],
+      "published": true,
+      "createdAt": "2024-01-18T08:00:00Z",
+      "updatedAt": "2024-01-18T08:00:00Z"
+    },
+    {
+      "id": "2",
+      "title": "Advanced JavaScript Patterns",
+      "body": "Explore advanced JavaScript patterns including async/await, promises, and modern ES6+ features.",
+      "userId": "1",
+      "tags": [
+        "javascript",
+        "es6",
+        "patterns"
+      ],
+      "published": true,
+      "createdAt": "2024-01-19T12:30:00Z",
+      "updatedAt": "2024-01-19T12:30:00Z"
+    },
+    {
+      "id": "3",
+      "title": "React Best Practices",
+      "body": "Learn the best practices for building scalable React applications with proper state management.",
+      "userId": "2",
+      "tags": [
+        "react",
+        "best-practices",
+        "frontend"
+      ],
+      "published": true,
+      "createdAt": "2024-01-20T16:45:00Z",
+      "updatedAt": "2024-01-20T16:45:00Z"
+    },
+    {
+      "id": "4",
+      "title": "Database Design Fundamentals",
+      "body": "Understanding database design principles and normalization techniques for better data management.",
+      "userId": "3",
+      "tags": [
+        "database",
+        "design",
+        "sql"
+      ],
+      "published": false,
+      "createdAt": "2024-01-21T11:20:00Z",
+      "updatedAt": "2024-01-21T11:20:00Z"
+    },
+    {
+      "id": "1752328656883",
+      "title": "Test Post",
+      "body": "This is a test post created via API",
+      "userId": "1752328651467",
+      "createdAt": "2025-07-12T13:57:36.883Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "postId": "1",
+      "name": "Alice Wonder",
+      "email": "alice@example.com",
+      "body": "Great introduction to REST APIs! Very helpful for beginners.",
+      "createdAt": "2024-01-18T10:15:00Z"
+    },
+    {
+      "id": "2",
+      "postId": "1",
+      "name": "Charlie Brown",
+      "email": "charlie@example.com",
+      "body": "Thanks for the clear explanation. Looking forward to more tutorials!",
+      "createdAt": "2024-01-18T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "postId": "2",
+      "name": "Diana Prince",
+      "email": "diana@example.com",
+      "body": "The async/await examples were particularly useful. Thank you!",
+      "createdAt": "2024-01-19T15:45:00Z"
+    },
+    {
+      "id": "4",
+      "postId": "3",
+      "name": "Evan Davis",
+      "email": "evan@example.com",
+      "body": "React hooks explanation was spot on. Great article!",
+      "createdAt": "2024-01-20T18:20:00Z"
+    },
+    {
+      "id": "1752328657641",
+      "body": "This is a test comment",
+      "postId": "1752328656883",
+      "name": "Commenter",
+      "email": "commenter@example.com",
+      "createdAt": "2025-07-12T13:57:37.641Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Technology",
+      "description": "Latest trends and tutorials in technology",
+      "color": "#3498db"
+    },
+    {
+      "id": "2",
+      "name": "Programming",
+      "description": "Coding tutorials and best practices",
+      "color": "#e74c3c"
+    },
+    {
+      "id": "3",
+      "name": "Web Development",
+      "description": "Frontend and backend development topics",
+      "color": "#2ecc71"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Laptop Pro",
+      "price": 1299.99,
+      "description": "High-performance laptop for professionals",
+      "category": "Electronics",
+      "inStock": true,
+      "quantity": 25,
+      "rating": 4.5,
+      "reviews": 128,
+      "image": "/images/laptop-pro.jpg",
+      "createdAt": "2024-01-10T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Wireless Headphones",
+      "price": 199.99,
+      "description": "Premium wireless headphones with noise cancellation",
+      "category": "Electronics",
+      "inStock": true,
+      "quantity": 50,
+      "rating": 4.8,
+      "reviews": 256,
+      "image": "/images/headphones.jpg",
+      "createdAt": "2024-01-11T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Smart Watch",
+      "price": 299.99,
+      "description": "Feature-rich smartwatch with health tracking",
+      "category": "Electronics",
+      "inStock": false,
+      "quantity": 0,
+      "rating": 4.3,
+      "reviews": 89,
+      "image": "/images/smartwatch.jpg",
+      "createdAt": "2024-01-12T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Gaming Mouse",
+      "price": 79.99,
+      "description": "High-precision gaming mouse with RGB lighting",
+      "category": "Gaming",
+      "inStock": true,
+      "quantity": 35,
+      "rating": 4.6,
+      "reviews": 67,
+      "image": "/images/gaming-mouse.jpg",
+      "createdAt": "2024-01-13T00:00:00Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "userId": "1",
+      "items": [
+        {
+          "productId": "1",
+          "quantity": 1,
+          "price": 1299.99
+        },
+        {
+          "productId": "2",
+          "quantity": 2,
+          "price": 199.99
+        }
+      ],
+      "total": 1699.97,
+      "status": "shipped",
+      "shippingAddress": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "zipcode": "12345"
+      },
+      "createdAt": "2024-01-22T10:00:00Z",
+      "updatedAt": "2024-01-23T14:30:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "2",
+      "items": [
+        {
+          "productId": "4",
+          "quantity": 1,
+          "price": 79.99
+        }
+      ],
+      "total": 79.99,
+      "status": "processing",
+      "shippingAddress": {
+        "street": "456 Oak Ave",
+        "city": "Another City",
+        "zipcode": "67890"
+      },
+      "createdAt": "2024-01-24T16:20:00Z",
+      "updatedAt": "2024-01-24T16:20:00Z"
+    }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "userId": "1",
+      "productId": "3",
+      "quantity": 1,
+      "addedAt": "2024-01-25T12:00:00Z"
+    }
+  ],
+  "todos": [
+    {
+      "id": "1",
+      "userId": "1",
+      "title": "Complete API documentation",
+      "completed": false,
+      "priority": "high",
+      "dueDate": "2024-02-01T00:00:00Z",
+      "createdAt": "2024-01-20T09:00:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "title": "Review pull requests",
+      "completed": true,
+      "priority": "medium",
+      "dueDate": "2024-01-25T00:00:00Z",
+      "createdAt": "2024-01-20T09:30:00Z"
+    },
+    {
+      "id": "3",
+      "userId": "2",
+      "title": "Update user interface",
+      "completed": false,
+      "priority": "low",
+      "dueDate": "2024-02-05T00:00:00Z",
+      "createdAt": "2024-01-21T14:15:00Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "userId": "1",
+      "title": "New comment on your post",
+      "message": "Alice Wonder commented on your post about REST APIs",
+      "type": "comment",
+      "read": false,
+      "createdAt": "2024-01-18T10:16:00Z"
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "title": "Order shipped",
+      "message": "Your order #1 has been shipped and is on its way",
+      "type": "order",
+      "read": true,
+      "createdAt": "2024-01-23T14:31:00Z"
+    }
+  ]
+}
